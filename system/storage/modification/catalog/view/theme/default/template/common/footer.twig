@@ -1,0 +1,106 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      {% if informations %}
+      <div class="col-sm-3">
+        <h5>{{ text_information }}</h5>
+        <ul class="list-unstyled">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="col-sm-3">
+        <h5>{{ text_service }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_extra }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h5>{{ text_account }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ account }}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p id="powered">{{ powered }}</p>
+  </div>
+</footer>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+
+<style type="text/css">
+	#ToTopHover {background: url('image/totop.png') no-repeat left -51px;cursor: pointer;width: 51px;height: 51px;display: block;overflow: hidden;float: left;opacity: 0;-moz-opacity: 0;filter: alpha(opacity=0);}
+	#ToTop {display: none;text-decoration: none;position: fixed;bottom: 20px;right: 20px;overflow: hidden;width: 51px;height: 51px;border: none;text-indent: -999px;background: url('image/totop.png') no-repeat left top;}
+</style>
+<script type="text/javascript">
+	jQuery(document).ready(function(){$().UItoTop({easingType:'easeOutQuint'});});
+	(function($){
+		$.fn.UItoTop = function(options) {
+			var defaults = {
+				text: 'To Top',
+				min: 200,
+				inDelay:600,
+				outDelay:400,
+				containerID: 'ToTop',
+				containerHoverID: 'ToTopHover',
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			var settings = $.extend(defaults, options);
+			var containerIDhash = '#' + settings.containerID;
+			var containerHoverIDHash = '#'+settings.containerHoverID;
+			$('body').append('<a id="'+settings.containerID+'">'+settings.text+'</a>');
+			$(containerIDhash).hide().click(function(){
+				$('html, body').animate({scrollTop: 0}, settings.scrollSpeed);
+				event.preventDefault();
+			})
+			.prepend('<span id="'+settings.containerHoverID+'"></span>')
+			.hover(function() {
+					$(containerHoverIDHash, this).stop().animate({
+						'opacity': 1
+					}, 600, 'linear');
+				}, function() { 
+					$(containerHoverIDHash, this).stop().animate({
+						'opacity': 0
+					}, 700, 'linear');
+				});			
+			$(window).scroll(function() {
+				var sd = $(window).scrollTop();
+				if(typeof document.body.style.maxHeight === "undefined") {
+					$(containerIDhash).css({
+						'position': 'absolute',
+						'top': $(window).scrollTop() + $(window).height() - 50
+					});
+				}
+				if ( sd > settings.min ) 
+					$(containerIDhash).fadeIn(settings.inDelay);
+				else 
+					$(containerIDhash).fadeOut(settings.Outdelay);
+			});
+	};
+	})(jQuery);
+</script>
+			
+</body></html>
